@@ -20,7 +20,7 @@ class RestaurantListFragment : Fragment(R.layout.fragment_restaurant_list) {
 
     lateinit var viewModel: RestaurantViewModel
     lateinit var restaurantAdapter: RestaurantAdapter
-    private val TAG = "RestaurantListFragment"
+    private val TAG = "RestaurantListFragment1"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +40,7 @@ class RestaurantListFragment : Fragment(R.layout.fragment_restaurant_list) {
         viewModel.restaurantLiveData.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resource.Success->{
-                    Log.d(TAG,"Success")
+                    Log.d(TAG,"Success Response1")
                     response.data?.let { apiResponse ->
                         restaurantAdapter.differ.submitList(apiResponse.toList())
 
@@ -60,7 +60,7 @@ class RestaurantListFragment : Fragment(R.layout.fragment_restaurant_list) {
         })
 
         viewModel.errorLiveData.observe(
-            this, Observer { errorResponse ->
+            viewLifecycleOwner, Observer { errorResponse ->
                 when(errorResponse) {
                     is Resource.Error->{
                         Log.d(TAG,"Error1")
