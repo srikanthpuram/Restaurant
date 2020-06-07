@@ -40,7 +40,7 @@ class RestaurantListFragment : Fragment(R.layout.fragment_restaurant_list) {
         viewModel.restaurantLiveData.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resource.Success->{
-                    Log.d(TAG,"Success")
+                    Log.d(TAG,"Success Response")
                     response.data?.let { apiResponse ->
                         restaurantAdapter.differ.submitList(apiResponse.toList())
 
